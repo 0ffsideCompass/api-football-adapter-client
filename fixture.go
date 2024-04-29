@@ -3,6 +3,8 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+
+	model "github.com/0ffsideCompass/api-football-adapter-model"
 )
 
 const (
@@ -19,8 +21,8 @@ const (
 // Returns:
 //   - *GeneralFixtureData: A pointer to the GeneralFixtureData struct containing detailed information about the fixture.
 //   - error: An error object that reports issues either in sending the request, handling the response, or parsing the JSON.
-func (c *Client) AddFixture(fixtureID string) (*GeneralFixtureData, error) {
-	payload := FixtureRequest{
+func (c *Client) AddFixture(fixtureID string) (*model.GeneralFixtureData, error) {
+	payload := model.FixtureRequest{
 		FixtureID: fixtureID,
 	}
 
@@ -29,7 +31,7 @@ func (c *Client) AddFixture(fixtureID string) (*GeneralFixtureData, error) {
 		return nil, fmt.Errorf("error posting fixture: %w", err)
 	}
 
-	var data GeneralFixtureData
+	var data model.GeneralFixtureData
 	err = json.Unmarshal(responseData, &data)
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling response data: %w", err)
@@ -48,7 +50,7 @@ func (c *Client) AddFixture(fixtureID string) (*GeneralFixtureData, error) {
 // Returns:
 //   - *GeneralFixtureData: A pointer to the GeneralFixtureData struct containing detailed information about the fixture.
 //   - error: An error object that reports issues either in sending the request, handling the response, or parsing the JSON.
-func (c *Client) GetFixture(id string) (*GeneralFixtureData, error) {
+func (c *Client) GetFixture(id string) (*model.GeneralFixtureData, error) {
 	endpoint := fmt.Sprintf(getFixtureEndpoint, id)
 
 	responseData, err := c.get(endpoint)
@@ -56,7 +58,7 @@ func (c *Client) GetFixture(id string) (*GeneralFixtureData, error) {
 		return nil, fmt.Errorf("error retrieving fixture: %w", err)
 	}
 
-	var data GeneralFixtureData
+	var data model.GeneralFixtureData
 	err = json.Unmarshal(responseData, &data)
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling response data: %w", err)

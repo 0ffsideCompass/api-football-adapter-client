@@ -3,6 +3,8 @@ package client
 import (
 	"encoding/json"
 	"fmt"
+
+	model "github.com/0ffsideCompass/api-football-adapter-model"
 )
 
 const (
@@ -20,8 +22,8 @@ const (
 // Returns:
 //   - *GeneralFixtureData: A pointer to a GeneralFixtureData struct that contains detailed information about the fixture.
 //   - error: An error object that captures issues during the POST request, response handling, or JSON parsing.
-func (c *Client) AddLeague(leagueID, season string) (*LeagueAddResponse, error) {
-	payload := LeagueRequest{
+func (c *Client) AddLeague(leagueID, season string) (*model.LeagueAddResponse, error) {
+	payload := model.LeagueRequest{
 		LeagueID: leagueID,
 		Season:   season,
 	}
@@ -31,7 +33,7 @@ func (c *Client) AddLeague(leagueID, season string) (*LeagueAddResponse, error) 
 		return nil, fmt.Errorf("error posting league: %w", err)
 	}
 
-	var data LeagueAddResponse
+	var data model.LeagueAddResponse
 	err = json.Unmarshal(responseData, &data)
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling response data: %w", err)
@@ -50,8 +52,8 @@ func (c *Client) AddLeague(leagueID, season string) (*LeagueAddResponse, error) 
 // Returns:
 //   - *GeneralFixtureData: A pointer to the GeneralFixtureData struct containing detailed information about the fixture.
 //   - error: An error object that captures issues during the GET request, response handling, or JSON parsing.
-func (c *Client) GetLeague(leagueID, season string) (*League, error) {
-	payload := LeagueRequest{
+func (c *Client) GetLeague(leagueID, season string) (*model.League, error) {
+	payload := model.LeagueRequest{
 		LeagueID: leagueID,
 		Season:   season,
 	}
@@ -61,7 +63,7 @@ func (c *Client) GetLeague(leagueID, season string) (*League, error) {
 		return nil, fmt.Errorf("error retrieving league: %w", err)
 	}
 
-	var data League
+	var data model.League
 	err = json.Unmarshal(responseData, &data)
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling response data: %w", err)
