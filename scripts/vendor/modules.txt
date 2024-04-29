@@ -1,0 +1,3 @@
+# github.com/0ffsideCompass/api-football-adapter-client v0.0.2
+## explicit
+github.com/0ffsideCompass/api-football-adapter-client
