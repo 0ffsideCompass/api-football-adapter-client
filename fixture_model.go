@@ -47,8 +47,8 @@ type FixtureData struct {
 	ScoreFullTimeHome int       `json:"score_fulltime_home" bson:"score_fulltime_home"`
 	ScoreFullTimeAway int       `json:"score_fulltime_away" bson:"score_fulltime_away"`
 	ScoreExtraTime    int       `json:"score_extra_time" bson:"score_extra_time"`
-	ScorePenatyHome   any       `json:"score_penalty_home" bson:"score_penalty_home"`
-	ScorePenatyAway   any       `json:"score_penalty_away" bson:"score_penalty_away"`
+	ScorePenatyHome   int       `json:"score_penalty_home" bson:"score_penalty_home"`
+	ScorePenatyAway   int       `json:"score_penalty_away" bson:"score_penalty_away"`
 	Events            []Event   `json:"events" bson:"events"`
 	Finished          bool      `json:"finished" bson:"finished"`
 	UpdateAt          time.Time `json:"update_at" bson:"update_at"`

@@ -42,7 +42,7 @@ type Client struct {
 	apiKey string
 }
 
-// NewClient initializes and returns a new Client instance.
+// New initializes and returns a new Client instance.
 // This function will return an error if the URL or API key are not provided.
 //
 // Parameters:
@@ -52,7 +52,7 @@ type Client struct {
 // Returns:
 //   - *Client: A pointer to the newly created Client instance
 //   - error: Error if the URL or API key are empty
-func NewClient(url, apiKey string) (*Client, error) {
+func New(url, apiKey string) (*Client, error) {
 	if url == "" {
 		return nil, errors.New("url is empty")
 	}
