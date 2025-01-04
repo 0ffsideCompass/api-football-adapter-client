@@ -69,8 +69,13 @@ func (c *Client) GetFixture(id string) (*model.GeneralFixtureData, error) {
 	return &data, nil
 }
 
-func (c *Client) GetFixtureByDateAndLeague(date, leagueID string) (*models.FixturesResponse, error) {
-	responseData, err := c.get(getFixtureByDateAndLeagueEndpoint)
+func (c *Client) GetFixtureByDateAndLeague(date, league string) (*models.FixturesResponse, error) {
+	var payload = model.GetFixturesByDateAndLeagueRequest{
+		Date:   date,
+		League: league,
+	}
+
+	responseData, err := c.post(getFixtureByDateAndLeagueEndpoint, payload)
 	if err != nil {
 		return nil, fmt.Errorf("error retrieving fixture: %w", err)
 	}

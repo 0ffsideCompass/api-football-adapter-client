@@ -1,0 +1,6 @@
+# github.com/0ffsideCompass/api-football-adapter-model v1.0.1
+## explicit
+github.com/0ffsideCompass/api-football-adapter-model
+# github.com/0ffsideCompass/api-football-go-client v1.1.6
+## explicit; go 1.20
+github.com/0ffsideCompass/api-football-go-client/models
