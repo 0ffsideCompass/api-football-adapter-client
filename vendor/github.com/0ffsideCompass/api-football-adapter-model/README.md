@@ -1,1 +1,0 @@
-# api-football-adapter-model
