@@ -5,11 +5,13 @@ import (
 	"fmt"
 
 	model "github.com/0ffsideCompass/api-football-adapter-model"
+	"github.com/0ffsideCompass/api-football-go-client/models"
 )
 
 const (
-	addFixtureEndpoint = "/fixture/add"
-	getFixtureEndpoint = "/fixture/get/%s"
+	addFixtureEndpoint                = "/fixture/add"
+	getFixtureEndpoint                = "/fixture/get/%s"
+	getFixtureByDateAndLeagueEndpoint = "/fixture/get/bydateandleague"
 )
 
 // This function constructs a JSON payload that includes the fixture ID, sends it to the server using a POST request,
@@ -59,6 +61,21 @@ func (c *Client) GetFixture(id string) (*model.GeneralFixtureData, error) {
 	}
 
 	var data model.GeneralFixtureData
+	err = json.Unmarshal(responseData, &data)
+	if err != nil {
+		return nil, fmt.Errorf("error unmarshalling response data: %w", err)
+	}
+
+	return &data, nil
+}
+
+func (c *Client) GetFixtureByDateAndLeague(date, leagueID string) (*models.FixturesResponse, error) {
+	responseData, err := c.get(getFixtureByDateAndLeagueEndpoint)
+	if err != nil {
+		return nil, fmt.Errorf("error retrieving fixture: %w", err)
+	}
+
+	var data models.FixturesResponse
 	err = json.Unmarshal(responseData, &data)
 	if err != nil {
 		return nil, fmt.Errorf("error unmarshalling response data: %w", err)
